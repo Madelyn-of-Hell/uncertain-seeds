@@ -15,26 +15,38 @@ func _physics_process(delta: float) -> void:
 	var friction = collider.friction if collider != null else 1
 	if Input.is_action_pressed("Left") and velocity.x > -top_speed:
 		add_velocity_x(-horizontal_movement, delta)
-		print("Going Left")
 	if Input.is_action_pressed("Right") and velocity.x < top_speed:
 		add_velocity_x(horizontal_movement, delta)
-		print("Going Right")
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		add_velocity_y(-jump_strength, delta)
-		print("Jumping")
+	if Input.is_action_just_pressed("Up"):
+		print("Up")
 	if Input.is_action_just_pressed("Down"):
 		self.scale.y /= 2
 	if Input.is_action_just_released("Down"):
 		self.scale.y *= 2
-	if Input.is_action_just_pressed("Primary ability"):
-		print("Primary Ability")
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		add_velocity_y(-jump_strength, delta)
+	if Input.is_action_just_pressed("Primary ability"): 
+		print("Primary")
 	if Input.is_action_just_pressed("Secondary Ability"):
-		print("Secondary Ability")
+		print("Secondary")
 	if Input.is_action_just_pressed("Movement ability"):
-		print("Movement Ability")
+		print("Movement")
 	if Input.is_action_just_pressed("Special Ability"):
-		print("Special Ability")
-	
+		print("Special")
+	if Input.is_action_just_pressed("Melee"):
+		print("Melee")
+	if Input.is_action_just_pressed("Change Fuel Cell"):
+		print("Change Fuel Cell")
+	if Input.is_action_just_pressed("Change States"):
+		print("Change States")
+	if Input.is_action_just_pressed("Attack"):
+		print("Attack")
+	if Input.is_action_just_pressed("Alt Attack"):
+		print("Alt Attack")
+	if Input.is_action_just_pressed("Pause"):
+		print("Pause")
+	if Input.is_action_just_pressed("Hud"):
+		print("HUD")
 	# Perpetual Movements
 	add_velocity_y(G.gravity)
 	velocity.x *= friction
