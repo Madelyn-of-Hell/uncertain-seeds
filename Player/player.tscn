@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c2gksbr6b6hsh"]
+
+[ext_resource type="Script" uid="uid://dg01hqpjbnnsw" path="res://Player/player.gd" id="1_l8h54"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hvfyp"]
+radius = 16.0
+height = 88.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l8h54"]
+radius = 4.0
+height = 50.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1020469086]
+script = ExtResource("1_l8h54")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=491856516]
+position = Vector2(0, -44)
+shape = SubResource("CapsuleShape2D_hvfyp")
+
+[node name="LeftArm" type="Node2D" parent="." unique_id=278776814]
+position = Vector2(0, -64)
+
+[node name="Area2D" type="Area2D" parent="LeftArm" unique_id=101044897]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArm/Area2D" unique_id=1348156541]
+shape = SubResource("CapsuleShape2D_l8h54")
+
+[node name="RightArm" type="Node2D" parent="." unique_id=945318981]
+position = Vector2(0, -44)
+
+[node name="Area2D" type="Area2D" parent="RightArm" unique_id=1662896425]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArm/Area2D" unique_id=112657080]
+shape = SubResource("CapsuleShape2D_l8h54")
+
+[node name="FloorGrabber" type="RayCast2D" parent="." unique_id=290126503]
+target_position = Vector2(0, 2)
