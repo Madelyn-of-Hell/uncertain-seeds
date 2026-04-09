@@ -7,10 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqff5"]
 
 [node name="TestWorld" type="Node2D" unique_id=626288107]
+texture_filter = 1
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=228113809]
 position = Vector2(579, 520)
 scale = Vector2(49.090004, 8.031639)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_v7kct")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1134374092]
