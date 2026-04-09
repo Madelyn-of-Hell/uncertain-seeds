@@ -1,5 +1,5 @@
-extends CharacterBody2D
-static var horizontal_movement = 1500
+extends Creature2D
+static var horizontal_movement = 4000
 static var jump_strength = 30000
 static var top_speed = 225
 
@@ -9,17 +9,28 @@ enum State {
 	PRIMAL
 }
 @onready var floor_grabber = $"FloorGrabber"
+@onready var animator = $WalkAnimator
+#@onready var state_animator = $BodyCollider/Animator
 func _physics_process(delta: float) -> void:
 	
 	var collider = floor_grabber.get_collider()
-	print(collider)
 	var friction = collider.friction if collider != null else 1
 	
 	# Handle Input
 	if Input.is_action_pressed("Left") and velocity.x > -top_speed:
+		direction = Direction.LEFT
+		animator.play("Walk Left")
 		add_velocity_x(-horizontal_movement, delta)
+	if Input.is_action_just_released("Left"):
+		direction = Direction.STILL
+		animator.play("RESET LEFT")
 	if Input.is_action_pressed("Right") and velocity.x < top_speed:
+		direction = Direction.RIGHT
+		animator.play("Walk Right")
 		add_velocity_x(horizontal_movement, delta)
+	if Input.is_action_just_released("Right"):
+		direction = Direction.STILL
+		animator.play("RESET RIGHT")
 	if Input.is_action_just_pressed("Up"):
 		print("Up")
 	if Input.is_action_just_pressed("Down"):
@@ -45,11 +56,11 @@ func _physics_process(delta: float) -> void:
 			State.COLLECTED:
 				print("Switch to Primal")
 				state = State.PRIMAL
-				$Animator.play("To Primal")
+				animator.play("To Primal Right")
 			State.PRIMAL:
 				print("Switch to Collected")
 				state = State.COLLECTED
-				$Animator.play("To Collected")
+				animator.play("To Collected Right")
 
 	if Input.is_action_just_pressed("Attack"):
 		print("Attack")
@@ -63,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	add_velocity_y(G.gravity)
 	velocity.x *= friction
 	
-	move_and_slide()
+	creature_process()
 
 ## A helper function for adding velocity with delta more conveniently.
 func add_velocity(Vector:Vector2,delta = 1):
