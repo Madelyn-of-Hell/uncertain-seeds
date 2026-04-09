@@ -1,3 +1,3 @@
 extends StaticBody2D
 
-var friction = 0.9
+var friction = 0.8
