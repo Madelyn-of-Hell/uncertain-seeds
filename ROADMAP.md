@@ -11,7 +11,7 @@
 - [x] Movement system
     - [x] Gravity
     - [x] Friction
-    - [ ] Transform entity based on direction
+    ~~- □ Transform entity based on direction~~
 ### Player
 - [ ] Abilities
     - [ ] States
